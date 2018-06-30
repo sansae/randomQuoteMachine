@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var randomQuote, author;
+  var quote, author;
 
   $("body").addClass("load");
 
@@ -17,13 +17,13 @@ $(document).ready(function() {
   };
 
   function randomQuoteGen() {
-    var quoteArr = ["here is the new quote", "dude, how'd i get here?", "this quote machine is wierd", "why did you bring me here?", "this quote machine is kinda neat!", "don't mind me, bro. i'm just testing out a brand new quote to see how this container adjusts to a lengthy sentence."];
-    var authorArr = ['- howdy richardson', '- mike mike', '- jules', '- batman', '- sorta', '- johnny'];
-    var randomNum = Math.floor(Math.random() * quoteArr.length);
-    randomQuote = quoteArr[randomNum];
-    author = authorArr[randomNum];
+    var url = "https://talaikis.com/api/quotes/random/";
+    $.getJSON(url, function(json) {
+      quote = json.quote;
+      author = json.author;
+    });
 
-    $("h1").html(randomQuote);
+    $("h1").html(quote);
     $("h5").html(author);
 
     randomColorGen();
@@ -41,6 +41,6 @@ $(document).ready(function() {
   });
 
   $("#tweet").on("click", function(){
-    window.open("https://twitter.com/intent/tweet?related=freecodecamp&hashtags=quote&text=" + randomQuote + " " + author);
+    window.open("https://twitter.com/intent/tweet?related=freecodecamp&hashtags=quote&text=" + quote + " " + author);
   });
 });
