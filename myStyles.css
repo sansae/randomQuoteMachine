@@ -1,6 +1,7 @@
 .customContainer {
   border-radius: 10px;
-  margin-top: 200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
   width: 600px;
   background-color: white;
 }
